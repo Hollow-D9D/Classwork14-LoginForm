@@ -8,7 +8,6 @@ function App() {
   });
   const [userName, setUserName] = useState(null);
   const [password, setPassword] = useState(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,11 +28,8 @@ function App() {
     setPassword(password);
   };
 
-  useEffect(() => {
-    if (user) {
-      document.title = user.userName;
-    }
-  }, [user]);
+  // useEffect(() => {
+  // });
 
   return (
     <div>
@@ -42,6 +38,8 @@ function App() {
         handleSetPassword={handleSetPassword}
         handleSetUserName={handleSetUserName}
         handleSubmit={handleSubmit}
+        userName={userName}
+        password={password}
       />
     </div>
   );
