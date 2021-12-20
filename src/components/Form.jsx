@@ -13,6 +13,7 @@ export function Form({
           type="text"
           placeholder="UserName"
           required
+          value={userName}
           onChange={handleSetUserName}
         />
         <br />
@@ -26,6 +27,7 @@ export function Form({
           required
           name="password"
           onChange={handleSetPassword}
+          value={password}
         />
         <br />
         {!!password || "Required!"}

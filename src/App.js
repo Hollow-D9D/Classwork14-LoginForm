@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form } from "./components/Form.jsx";
+import { getDataFromLocalStorage } from "./helpers/getDataFromLocalStorage.js";
+import { setDataToLocalStorage } from "./helpers/setDataToLocalStorage.js";
 
 function App() {
   const [user, setUser] = useState({
@@ -17,7 +19,6 @@ function App() {
     };
     setUser(user);
   };
-
   const handleSetUserName = (e) => {
     const userName = e.target.value;
     setUserName(userName);
@@ -28,9 +29,18 @@ function App() {
     setPassword(password);
   };
 
-  // useEffect(() => {
-  // });
-
+  useEffect(() => {
+    return () => {
+      if (userName || password) {
+        setDataToLocalStorage("loginInfo", [userName, password]);
+      }
+    };
+  });
+  useEffect(() => {
+    const data = getDataFromLocalStorage("loginInfo");
+    setUserName(data ? data[0] : null);
+    setPassword(data ? data[1] : null);
+  }, []);
   return (
     <div>
       <h1>Login Form</h1>
